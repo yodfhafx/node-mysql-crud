@@ -27,7 +27,7 @@
               <td><%= item.id %></td>  
               <td><%= item.name %></td>
               <td><%= item.price %></td>
-              <td><a href="/delete?id=<% item.id %>" onClick="return confirm('Are you sure to delete?')">Delete</a></td>
+              <td><a href="/delete?id=<%= item.id %>" onClick="return confirm('Are you sure to delete?')">Delete</a></td>
           </tr>                                   
         <% }); %>
         </tbody>
