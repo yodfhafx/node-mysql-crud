@@ -5,29 +5,31 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Page Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+  <link href="/myapp/public/stylesheets/bootstrap.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
-    <h1>Show Data</h1>
-
-    <table>
-      <thead>
-        <tr>
-          <td>id</td>
-          <td>name</td>
-          <td>price</td>
-        </tr>
-      </thead>
-      <tbody>
-      <% books.forEach(function (item) { %>
-        <tr>  
-            <td><%= item.id %></td>  
-            <td><%= item.name %></td>
-            <td><%= item.price %></td>
-        </tr>                                   
-      <% }); %>
-      </tbody>
-      
-    </table>
+    <h1>Books Data</h1>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>price</td>
+          </tr>
+        </thead>
+        <tbody>
+        <% books.forEach(function (item) { %>
+          <tr>  
+              <td><%= item.id %></td>  
+              <td><%= item.name %></td>
+              <td><%= item.price %></td>
+          </tr>                                   
+        <% }); %>
+        </tbody>
+        
+      </table>
+    </div>
 </body>
 </html>
