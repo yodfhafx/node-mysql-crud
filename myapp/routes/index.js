@@ -31,4 +31,16 @@ router.get('/select', function(req, res) {
   });
 });
 
+// Form book
+router.get('/form', function(req, res) {
+  res.render('form');
+});
+
+// Add book
+router.get('/select', function(req, res) {
+  db.query('INSERT INTO tb_book SET ?', req.body, function(err, rs) {
+    res.send('insert success');
+  });
+});
+
 module.exports = router;
