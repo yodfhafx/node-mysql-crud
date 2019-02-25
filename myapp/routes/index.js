@@ -37,7 +37,7 @@ router.get('/form', function(req, res) {
 });
 
 // Add book
-router.get('/select', function(req, res) {
+router.post('/form', function(req, res) {
   db.query('INSERT INTO tb_book SET ?', req.body, function(err, rs) {
     res.send('insert success');
   });
