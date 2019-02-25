@@ -16,12 +16,19 @@ router.get('/', function(req, res, next) {
 });
 
 // Connect database
-router.get('/testdb', (req, res, next) => {
+router.get('/testdb', function(req, res) {
   if(db != null) {
     res.send('Connection success');
   } else {
     res.send('Connection failed');
   }
+});
+
+// Show book
+router.get('/select', function(req, res) {
+  db.query('SELECT * FROM tb_book', function(err, rs) {
+    res.render('select', { books: rs });
+  });
 });
 
 module.exports = router;
