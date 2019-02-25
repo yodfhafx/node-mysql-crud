@@ -43,4 +43,11 @@ router.post('/form', function(req, res) {
   });
 });
 
+// Delete book
+router.delete('/delete', function(req, res) {
+  db.query('DELETE FROM tb_book WHERE id = ?', req.query.id, function(err, rs) {
+    res.redirect('/selete');
+  });
+});
+
 module.exports = router;
