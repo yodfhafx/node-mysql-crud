@@ -11,12 +11,12 @@ var db = mysql.createPool({
 });
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res) => {
   res.render('index', { title: 'Express' });
 });
 
 // Connect database
-router.get('/testdb', function(req, res) {
+router.get('/testdb', (req, res) => {
   if(db != null) {
     res.send('Connection success');
   } else {
@@ -25,27 +25,44 @@ router.get('/testdb', function(req, res) {
 });
 
 // Show book
-router.get('/select', function(req, res) {
+router.get('/select', (req, res) => {
   db.query('SELECT * FROM tb_book', function(err, rs) {
-    res.render('select', { books: rs });
+    res.render('select', { book: rs });
   });
 });
 
 // Form book
-router.get('/form', function(req, res) {
-  res.render('form');
+router.get('/form', (req, res) => {
+  res.render('form', { book: {} });
 });
 
 // Add book
-router.post('/form', function(req, res) {
+router.post('/form', (req, res) => {
   db.query('INSERT INTO tb_book SET ?', req.body, function(err, rs) {
     res.send('insert success');
   });
 });
 
 // Delete book
-router.get('/delete', function(req, res) {
+router.get('/delete', (req, res) => {
   db.query('DELETE FROM tb_book WHERE id = ?', req.query.id, function(err, rs) {
+    res.redirect('/select');
+  });
+});
+
+// Edit book
+router.get('/edit', (req, res) => {
+  db.query('SELECT * FROM tb_book WHERE id = ?', req.query.id, function(err, rs) {
+    res.render('form', { book: rs[0] });
+  });
+});
+
+router.post('/edit', (req, res) => {
+  var param = [
+    req.body, // data for update
+    req.query.id // condition for update
+  ]
+  db.query('UPDATE tb_book SET ? WHERE id = ?', param, (err, rs) => {
     res.redirect('/select');
   });
 });
