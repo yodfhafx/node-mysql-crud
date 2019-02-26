@@ -27,7 +27,7 @@ router.get('/testdb', (req, res) => {
 // Show book
 router.get('/select', (req, res) => {
   db.query('SELECT * FROM tb_book', function(err, rs) {
-    res.render('select', { book: rs });
+    res.render('select', { books: rs });
   });
 });
 
