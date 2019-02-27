@@ -31,6 +31,13 @@ router.get('/select', (req, res) => {
   });
 });
 
+// Show movie
+router.get('/all', (req, res) => {
+  db.query('SELECT * FROM tb_movie', function(err, rs) {
+    res.render('all', { movies: rs });
+  });
+});
+
 // Form book
 router.get('/form', (req, res) => {
   res.render('form', { book: {} });
