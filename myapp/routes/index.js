@@ -35,6 +35,7 @@ router.get('/select', (req, res) => {
 router.get('/all', (req, res) => {
   db.query('SELECT * FROM tb_movie', function(err, rs) {
     res.render('all', { movies: rs });
+    res.json(rs);
   });
 });
 
